@@ -148,7 +148,7 @@ class Map {
                         var points = dataMN[i].tier;
                         var pct = dataMN[i].Total90_17;
                         var foreign = dataMN[i].foreignborn_90_17;
-                        var color_scale = d3.scaleLinear().domain([4, 3, 2, 1, 0]).range(['#67B4C2', '#5BBF48', '#F2614C', '#5BBF48', '#DDDDDD']);
+                        var color_scale = d3.scaleLinear().domain([4, 3, 2, 1, 0]).range(['#67B4C2', '#F2614C', '#F2614C', '#5BBF48', '#DDDDDD']);
                         return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div class='number'><span class='legendary' style='background-color:" + color_scale(points) + ";'>" + d3.format("+.0%")(pct) + "</span> overall growth</div><div class='number'><span class='legendary' style='background-color:" + color_scale(4) + ";'>" + d3.format("+.0%")(foreign) + "</span> foreign-born growth</div>"
                     }
                 }
