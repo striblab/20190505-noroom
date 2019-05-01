@@ -47,14 +47,19 @@ $strib-fonts-location: '//static.startribune.com/assets/libs/strib-icons/0.0.10/
       fill:'#F2614C';
   }
   
-  .cross {
-    background: repeating-linear-gradient(
-        45deg,
-        #888888,
-        #888888 10px,
-        #0D4673 10px,
-        #0D4673 20px
-      );
+//   .cross {
+//     background: repeating-linear-gradient(
+//         45deg,
+//         #888888,
+//         #888888 10px,
+//         #0D4673 10px,
+//         #0D4673 20px
+//       );
+//   }
+
+  .cross { 
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="); background-repeat: repeat;
+      color: #000000 !important;
   }
 
   .chart, .chart .overlay {
