@@ -1,0 +1,36 @@
+<div id="wrapper">
+<div class="slide" id="rates">
+
+  <div class="chatter">Counties comprising the Twin Cities metro area have <span class="legendary green3">grown</span> steadily between Census years, while much of southwestern Minnesota have <span class="legendary red4">declined</span> in population, though were somewhat bolstered by <span class="legendary blue4">growth in foreign-born residents</span>.</div>
+
+  <div class="chartHeader">Minnesota population change by county, 1990-2017</div>
+
+  <div class="map" id="map"></div>
+
+  <div class="byline">Data source: U.S. Census Bureau | Graphic by <a href="http://www.startribune.com/jeff-hargarten/274254381/" target="new_">Jeff Hargarten, Star Tribune</a></div>
+</div>
+
+<div class="slide" id="race">
+<div class="chatter">In Stevens County, overall <span class="legendary green3">population</span> shrinkage was partially stemmed by grown in <span class="legendary blue4">growth in foreign-born residents</span>.</div>
+
+<div class="chartHeader">Steven County population change, 1990-2017</div>
+
+<div id="chart" class="chart"></div>
+
+<div class="byline">Data source: U.S. Census Bureau | Graphic by <a href="http://www.startribune.com/jeff-hargarten/274254381/" target="new_">Jeff Hargarten, Star Tribune</a></div>
+</div>
+</div>
+
+
+<script>
+  export default {
+    oncreate() {
+      // For content that lives in the CMS directly, we hack
+      // around the share bits by removing it before we load
+      // the component, then re-attach here.
+      if (this.get().attachShare) {
+        this.get().attachShare();
+      }
+    }
+  };
+</script>
