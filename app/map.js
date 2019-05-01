@@ -123,7 +123,7 @@ class Map {
         .append('path')
           .attr('d', 'M0 0L8 8ZM8 0L0 8Z')
           .attr('stroke', '#0D4673')
-          .attr('stroke-width', 1.3);
+          .attr('stroke-width', 0.3);
 
         g.append("g")
             .attr("class", "counties")
