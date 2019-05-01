@@ -42,7 +42,7 @@ class Chart {
                 connectNull: true
             },
             color: {
-                pattern: ['#888888','#67B4C2']
+                pattern: ['#e0e0e0','#0D4673']
             },
             axis: {
                 // rotated: true,

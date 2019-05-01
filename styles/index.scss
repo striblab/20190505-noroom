@@ -43,6 +43,20 @@ $strib-fonts-location: '//static.startribune.com/assets/libs/strib-icons/0.0.10/
     display: inline-block;
   }
 
+  .county {
+      fill:'#F2614C';
+  }
+  
+  .cross {
+    background: repeating-linear-gradient(
+        45deg,
+        #888888,
+        #888888 10px,
+        #0D4673 10px,
+        #0D4673 20px
+      );
+  }
+
   .chart, .chart .overlay {
       pointer-events:none !important
   }

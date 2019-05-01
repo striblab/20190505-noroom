@@ -17,7 +17,7 @@ class Map {
         this.colorScale1 = d3.scaleLinear().domain([-0.75,-0.50,-0.25,-0.01]).range(['#9C0004', '#C22A22', '#F28670', '#F2AC93']);
         this.colorScale2 = d3.scaleLinear().domain([1,0.75,0.50,0]).range(['#118241', '#299E3D', '#9EE384', '#C7E5B5']);
         this.colorScale3 = d3.scaleLinear().domain([1,0.75,0.50,0]).range(['#0D4673', '#3580A3', '#A7E6E3', '#D1E6E1']);
-        this.colorScale4 = d3.scaleLinear().domain([3, 2, 1, 0]).range(['#67B4C2', '#F2614C', '#5BBF48', '#DDDDDD']);
+        this.colorScale4 = d3.scaleLinear().domain([3, 2, 1, 0]).range(['#F2614C', '#F2614C', '#5BBF48', '#DDDDDD']);
     }
 
     /********** PRIVATE METHODS **********/
@@ -113,6 +113,18 @@ class Map {
             };
         };
 
+        svg
+        .append('defs')
+        .append('pattern')
+          .attr('id', 'texture1')
+          .attr('patternUnits', 'userSpaceOnUse')
+          .attr('width', 8)
+          .attr('height', 8)
+        .append('path')
+          .attr('d', 'M0 0L8 8ZM8 0L0 8Z')
+          .attr('stroke', '#0D4673')
+          .attr('stroke-width', 1.3);
+
         g.append("g")
             .attr("class", "counties")
             .selectAll("path")
@@ -153,6 +165,48 @@ class Map {
                     }
                 }
               }));
+
+              g.append("g")
+              .attr("class", "counties")
+              .selectAll("path")
+              .data(topojson.feature(mncounties, mncounties.objects.counties).features)
+              .enter().append("path")
+              .attr("d", path)
+              .attr("class", function(d) {
+                  return "county C" + d.properties.COUNTYFIPS;
+              })
+              .attr("id", function(d) {
+                  return "P" + d.properties.COUNTYFIPS;
+              })
+              .style("stroke-width", '1')
+              .style("stroke", "#ffffff")
+              .style("fill", function(d) {
+                  for (var i=0; i < dataMN.length; i++) {
+                      if (dataMN[i].NAME == d.properties.COUNTYNAME) {
+                        if (dataMN[i].foreignborn_90_17 > 0) { return 'url(#texture1)'; }
+                        else { return 'none'; }
+                      }
+                  }
+              })
+              .call(tooltip(function(d, i) {
+                  var votes;
+                  var diff;
+                  var color = "#ffffff";
+                  var nilf = 0;
+  
+                  for (var i = 0; i < dataMN.length; i++) {
+                      if (dataMN[i].NAME == d.properties.COUNTYNAME) {
+                          var points = dataMN[i].tier;
+                          var pct = dataMN[i].Total90_17;
+                          var foreign = dataMN[i].foreignborn_90_17;
+                          var color_scale = d3.scaleLinear().domain([4, 3, 2, 1, 0]).range(['#67B4C2', '#F2614C', '#F2614C', '#5BBF48', '#DDDDDD']);
+                          return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div class='number'><span class='legendary' style='background-color:" + color_scale(points) + ";'>" + d3.format("+.0%")(pct) + "</span> overall growth</div><div class='number'><span class='legendary' style='background-color:" + color_scale(4) + ";'>" + d3.format("+.0%")(foreign) + "</span> foreign-born growth</div>"
+                      }
+                  }
+                }));
+
+
+
 
      //City labels
         var marks = [{
