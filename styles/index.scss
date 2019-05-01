@@ -21,3 +21,42 @@ $strib-fonts-location: '//static.startribune.com/assets/libs/strib-icons/0.0.10/
 // Split your styles into multiple files so its easier to understand and change
 @import 'shared/_project';
 
+.tooltip {
+    font-family: "Benton Sans", Helvetica, Arial, sans-serif;
+    background-color: white;
+    height: auto;
+    width: 200px;
+    padding: 10px;
+    border-radius: 0;
+    border: 1px solid black;
+    font-size: 13px;
+    font-family: Arial;
+  }
+
+  .legendary {
+    padding: 4px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0 7px;
+    margin-bottom: 3px;
+    display: inline-block;
+  }
+
+  .chart, .chart .overlay {
+      pointer-events:none !important
+  }
+
+    @media (max-width:800px) {
+          #wrapper, .slide, .container-lg, .map, .map svg {
+              width: 100% !important;
+          }
+      }
+      @media (max-width:500px) {
+          #wrapper {
+              width: 100%;
+      }
+      .city-label, .label-bg {
+        display:none !important;
+      }
+      }

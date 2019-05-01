@@ -77,6 +77,16 @@ utils.autoEnablePym();
 //   }
 // });
 
+import Chart from './chart.js';
+import Map from './map.js';
+
+
+const chart1 = new Chart('#chart');
+const map = new Map("#map");
+
+chart1.render();
+map.render();
+
 
 $.urlParam = function(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);

@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import * as d3tooltip from 'd3-tooltip';
 import * as topojson from 'topojson';
 import mncounties from '../sources/counties.json';
-import nilfMN from '../sources/nilf_mn.json';
+import population from '../sources/popchange.json';
 
 class Map {
 
@@ -14,7 +14,10 @@ class Map {
         this.g2 = this.svg.append("g");
         this.zoomed = false;
         this.scaled = $(target).width() / 520;
-        this.colorScale = d3.scaleLinear().domain([4, 3, 2, 1]).range(['#D1E6E1', '#67B4C2', '#3580A3', '#0D4673']);
+        this.colorScale1 = d3.scaleLinear().domain([-0.75,-0.50,-0.25,-0.01]).range(['#9C0004', '#C22A22', '#F28670', '#F2AC93']);
+        this.colorScale2 = d3.scaleLinear().domain([1,0.75,0.50,0]).range(['#118241', '#299E3D', '#9EE384', '#C7E5B5']);
+        this.colorScale3 = d3.scaleLinear().domain([1,0.75,0.50,0]).range(['#0D4673', '#3580A3', '#A7E6E3', '#D1E6E1']);
+        this.colorScale4 = d3.scaleLinear().domain([3, 2, 1, 0]).range(['#67B4C2', '#F2614C', '#5BBF48', '#DDDDDD']);
     }
 
     /********** PRIVATE METHODS **********/
@@ -49,9 +52,7 @@ class Map {
         var g2 = svg.append("g");
         var tooltip = d3tooltip(d3);
 
-        var dataMN = nilfMN.mncounties;
-
-        
+        var dataMN = population.change;
 
         // self._render_legend();
 
@@ -75,9 +76,6 @@ class Map {
                         d3.select('body').selectAll('div.tooltip').remove();
                         // Append tooltip
                         tooltipDiv = d3.select('body').append('div').attr('class', 'tooltip');
-                        // var absoluteMousePos = d3.mouse(bodyNode);
-                        // console.log(d3.event.pageX);
-                        // console.log(absoluteMousePos);
                         tooltipDiv.style('left', (d3.event.pageX + 10) + 'px')
                             .style('top', (d3.event.pageY - 15) + 'px')
                             .style('position', 'absolute')
@@ -132,11 +130,8 @@ class Map {
             .style("fill", function(d) {
 
                 for (var i=0; i < dataMN.length; i++) {
-                    console.log(dataMN[i].Geography);
-
-                    if (dataMN[i].Geography == d.properties.COUNTYNAME) {
-                        
-                        return self.colorScale(dataMN[i].Bucket);
+                    if (dataMN[i].NAME == d.properties.COUNTYNAME) {
+                        return self.colorScale4(dataMN[i].tier);
                     }
                 }
 
@@ -149,11 +144,12 @@ class Map {
                 var nilf = 0;
 
                 for (var i = 0; i < dataMN.length; i++) {
-                    if (dataMN[i].Geography == d.properties.COUNTYNAME) {
-                        var points = dataMN[i].Bucket;
-                        var pct = dataMN[i].PctNILF;
-                        var color_scale = d3.scaleLinear().domain([4, 3, 2, 1]).range(['#D1E6E1', '#67B4C2', '#3580A3', '#0D4673']);
-                        return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div class='number'><span class='legendary' style='background-color:" + color_scale(points) + ";'>" + d3.format(".0%")(pct) + "</span> of middle-aged men not in labor force</div>"
+                    if (dataMN[i].NAME == d.properties.COUNTYNAME) {
+                        var points = dataMN[i].tier;
+                        var pct = dataMN[i].Total90_17;
+                        var foreign = dataMN[i].foreignborn_90_17;
+                        var color_scale = d3.scaleLinear().domain([4, 3, 2, 1, 0]).range(['#67B4C2', '#5BBF48', '#F2614C', '#5BBF48', '#DDDDDD']);
+                        return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div class='number'><span class='legendary' style='background-color:" + color_scale(points) + ";'>" + d3.format("+.0%")(pct) + "</span> overall growth</div><div class='number'><span class='legendary' style='background-color:" + color_scale(4) + ";'>" + d3.format("+.0%")(foreign) + "</span> foreign-born growth</div>"
                     }
                 }
               }));

@@ -206,6 +206,27 @@ p {
         font-size: 1.1em;
         margin-top:8px;
     }
+    .city-label {
+        font-size: 0.45em;
+        fill: white;
+        font-family: "Benton Sans";
+        text-shadow: 1px 0 5px black;
+        pointer-events:none;
+      
+        @supports (-ms-ime-align:auto) {
+          fill:#333;
+        }
+        .label-bg {
+            pointer-events: none;
+            font-size:0.4em !important;
+            text-anchor: middle;
+            fill: none;
+            stroke: #ffffff;
+            text-shadow: 0 0 3px #fff;
+            opacity: 1;
+        }
+    }
+        
       @media (max-width:800px) {
           #wrapper,
           .slide {
