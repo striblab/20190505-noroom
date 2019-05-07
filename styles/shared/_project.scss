@@ -153,6 +153,10 @@ p {
       stroke-dasharray: 5, 5;
       stroke: #333;
   }
+
+  .county:hover {
+      opacity:0.5;
+  }
   
   .slide {
       .byline a {
