@@ -15,7 +15,7 @@ class Map {
         this.zoomed = false;
         this.scaled = $(target).width() / 520;
         this.colorScale1 = d3.scaleLinear().domain([-0.5,0]).range(['#9C0004','#F2AC93']);
-        this.colorScale2 = d3.scaleLinear().domain([0,1]).range(['#C7E5B5','#118241']);
+        this.colorScale2 = d3.scaleLinear().domain([0,1]).range(['#C7E5B5','#299E3D']);
         this.colorScale3 = d3.scaleLinear().domain([1,0.75,0.50,0]).range(['#0D4673', '#3580A3', '#A7E6E3', '#D1E6E1']);
         this.colorScale4 = d3.scaleLinear().domain([3, 2, 1, 0]).range(['#F2614C', '#F2614C', '#5BBF48', '#DDDDDD']);
     }
