@@ -190,7 +190,7 @@ class Map {
               .style("fill", function(d) {
                   for (var i=0; i < dataMN.length; i++) {
                       if (dataMN[i].NAME == d.properties.COUNTYNAME) {
-                        if (dataMN[i].foreignborn_90_17 > 0) { return 'url(#texture1)'; }
+                        if (dataMN[i].foreignborn_90_17 > 0 && dataMN[i].tier == 3) { return 'url(#texture1)'; }
                         else { return 'none'; }
                       }
                   }
